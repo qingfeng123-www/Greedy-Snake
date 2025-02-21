@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>可调速贪吃蛇-2025终极版</title>
     <style>
         body {
@@ -90,6 +91,61 @@
         #restartBtn:hover {
             background: #00ff9d33;
         }
+
+        /* 添加移动设备的控制按钮 */
+        .mobile-controls {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 999;
+        }
+
+        .mobile-controls button {
+            padding: 20px 30px; /* 增大按钮尺寸 */
+            background: #16213e;
+            border: 2px solid #00ff9d;
+            color: #00ff9d;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1.2em; /* 增大字体 */
+        }
+
+        .mobile-controls button:hover {
+            background: #00ff9d33;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-controls {
+                display: flex;
+                flex-direction: column; /* 设置为十字形布局 */
+                align-items: center;
+            }
+            .mobile-controls button {
+                width: 60px; /* 固定宽度 */
+                height: 60px; /* 固定高度 */
+                border-radius: 30px; /* 圆形按钮 */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .mobile-controls .up {
+                margin-bottom: 20px;
+            }
+            .mobile-controls .down {
+                margin-top: 20px;
+            }
+            .mobile-controls .left {
+                margin-right: 20px;
+            }
+            .mobile-controls .right {
+                margin-left: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -109,6 +165,16 @@
         <div id="overlay">
             <span id="endScore"></span>
             <button id="restartBtn" onclick="startGame()">重新开始</button>
+        </div>
+    </div>
+
+    <!-- 添加移动设备的控制按钮 -->
+    <div class="mobile-controls">
+        <button class="up" onclick="moveSnake('ArrowUp')">⬆️</button>
+        <div style="display: flex;">
+            <button class="left" onclick="moveSnake('ArrowLeft')">⬅️</button>
+            <button class="down" onclick="moveSnake('ArrowDown')">⬇️</button>
+            <button class="right" onclick="moveSnake('ArrowRight')">➡️</button>
         </div>
     </div>
 
@@ -328,6 +394,19 @@
         document.addEventListener('keydown', (e) => {
             if(e.code === 'Space') togglePause();
         });
+
+        // 添加移动设备的控制按钮
+        function moveSnake(direction) {
+            const keyMap = {
+                'ArrowUp':    {x: 0, y: -1},
+                'ArrowDown':  {x: 0, y: 1},
+                'ArrowLeft':  {x: -1, y: 0},
+                'ArrowRight': {x: 1, y: 0}
+            };
+            if(keyMap[direction] && !game.isOppositeDirection(keyMap[direction])) {
+                game.direction = keyMap[direction];
+            }
+        }
     </script>
 </body>
 </html>
