@@ -126,27 +126,77 @@
             background: #00ff9d33;
         }
 
-        @media (max-width: 768px) {
-            .mobile-controls {
-                display: flex;
-                flex-direction: column; /* 设置为十字形布局 */
-                align-items: center;
-            }
-            .mobile-controls .up {
-                margin-bottom: 20px;
-            }
-            .mobile-controls .down {
-                margin-top: 20px;
-            }
-            .mobile-controls .left {
-                margin-right: 20px;
-                margin-top: -10px; /* 向上移动 */
-            }
-            .mobile-controls .right {
-                margin-left: 20px;
-                margin-top: -10px; /* 向上移动 */
-            }
-        }
+<!DOCTYPE html> 
+<html lang="en"> 
+ 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <style> 
+       .mobile-controls { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            grid-template-rows: repeat(3, 1fr); 
+            gap: 10px; 
+            width: 200px; 
+            height: 200px; 
+        } 
+ 
+       .control { 
+            background-color: #ccc; 
+            text-align: center; 
+            line-height: 50px; 
+        } 
+ 
+        @media (max - width: 768px) { 
+           .mobile-controls { 
+                /* 紧凑对称布局，去除不必要的空白 */ 
+                grid-template-columns: repeat(2, 1fr); 
+                grid-template-rows: repeat(2, 1fr); 
+                gap: 5px; 
+                width: 120px; 
+                height: 120px; 
+            } 
+ 
+           .control:nth-child(1) { 
+                grid-column: 1 / 2; 
+                grid-row: 1 / 2; 
+            } 
+ 
+           .control:nth-child(2) { 
+                grid-column: 2 / 3; 
+                grid-row: 1 / 2; 
+            } 
+ 
+           .control:nth-child(3) { 
+                grid-column: 1 / 2; 
+                grid-row: 2 / 3; 
+            } 
+ 
+           .control:nth-child(4) { 
+                grid-column: 2 / 3; 
+                grid-row: 2 / 3; 
+            } 
+ 
+            /* 隐藏不需要显示的元素 */ 
+           .control:nth-child(5) { 
+                display: none; 
+            } 
+        } 
+    </style> 
+</head> 
+ 
+<body> 
+    <div class="mobile-controls"> 
+        <div class="control">↑</div> 
+        <div class="control">→</div> 
+        <div class="control">←</div> 
+        <div class="control">↓</div> 
+        <div class="control">OK</div> 
+    </div> 
+</body> 
+ 
+</html> 
     </style>
 </head>
 <body>
