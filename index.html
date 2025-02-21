@@ -26,6 +26,8 @@
             border: 3px solid #00ff9d;
             border-radius: 10px;
             box-shadow: 0 0 20px #00ff9d33;
+            width: 100%; /* 适应屏幕宽度 */
+            height: auto; /* 自动高度 */
         }
 
         .game-controls {
@@ -109,10 +111,15 @@
             background: #16213e;
             border: 2px solid #00ff9d;
             color: #00ff9d;
-            border-radius: 5px;
+            border-radius: 50%; /* 圆形按钮 */
             cursor: pointer;
             transition: 0.3s;
             font-size: 1.2em; /* 增大字体 */
+            width: 60px; /* 固定宽度 */
+            height: 60px; /* 固定高度 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .mobile-controls button:hover {
@@ -124,14 +131,6 @@
                 display: flex;
                 flex-direction: column; /* 设置为十字形布局 */
                 align-items: center;
-            }
-            .mobile-controls button {
-                width: 60px; /* 固定宽度 */
-                height: 60px; /* 固定高度 */
-                border-radius: 30px; /* 圆形按钮 */
-                display: flex;
-                align-items: center;
-                justify-content: center;
             }
             .mobile-controls .up {
                 margin-bottom: 20px;
